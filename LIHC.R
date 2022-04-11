@@ -31,7 +31,7 @@ names(mut_data)[1] <- 'sample_id'
 names(mut_data)[2] <- 'GeneSymbol'
 names(mut_data)[12] <- 'cancer_level'
 
-write.csv(mut_data,"HNSC_Mut.csv")
+write.csv(dif_tsg,"diff_tsg.csv")
 
 
 #separate into stages and ages
