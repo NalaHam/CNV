@@ -69,7 +69,8 @@ sum(xchr_tsg$GeneSymbol == "RBBP7" & xchr_tsg$gender == "female") #1
 unq$female <- c(1,0,1)
 
 #find difference btw males and females for each tumor suppressor
-dif_tsg$blca_bias <- unq$male - unq$female
+blca_tsg$blca_bias <- unq$male - unq$female
+write.csv(blca_tsg,"BLCA_ratio.csv")
 
 
 

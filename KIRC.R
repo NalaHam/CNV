@@ -64,7 +64,10 @@ sum(xchr_tsg$GeneSymbol == "XIST" & xchr_tsg$gender == "female") #1
 dif_tsg$female <- c(3,1,1)
 
 #find difference btw males and females for each tumor suppressor
-dif_tsg$kirc_bias <- dif_tsg$male - dif_tsg$female
+kirc_tsg$kirc_bias <- dif_tsg$male - dif_tsg$female
+
+write.csv(kirc_tsg,"KIRC_ratio.csv")
+
 
 
 

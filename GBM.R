@@ -97,6 +97,7 @@ gbm_tsg$female <- c(sum(xchr_tsg$GeneSymbol == "DMD" & xchr_tsg$gender == "femal
 
 #find difference btw males and females for each tumor suppressor
 gbm_tsg$gbm_bias <- gbm_tsg$male - gbm_tsg$female
+write.csv(gbm_tsg,"GBM_ratio.csv")
 
 
 

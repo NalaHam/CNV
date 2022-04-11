@@ -85,3 +85,9 @@ lusc_tsg$female <- c(sum(xchr_tsg$GeneSymbol == "BTK" & xchr_tsg$gender == "fema
 
 #find difference btw males and females for each tumor suppressor
 lusc_tsg$lusc_bias <- lusc_tsg$male - lusc_tsg$female
+write.csv(lusc_tsg,"LUSC_ratio.csv")
+
+
+
+
+

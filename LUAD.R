@@ -88,6 +88,9 @@ luad_tsg$female <- c(sum(xchr_tsg$GeneSymbol == "DMD" & xchr_tsg$gender == "fema
 #find difference btw males and females for each tumor suppressor
 luad_tsg$lihc_bias <- luad_tsg$male - luad_tsg$female
 
+write.csv(luad_tsg,"LUAD_ratio.csv")
+
+
 
 
                                        

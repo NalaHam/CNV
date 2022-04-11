@@ -85,6 +85,7 @@ coad_tsg$female <- c(9,4,3,2,5,2,3,2,6,0,1)
 
 #find difference btw males and females for each tumor suppressor
 coad_tsg$coad_bias <- coad_tsg$male - coad_tsg$female
+write.csv(coad_tsg,"COAD_ratio.csv")
 
 
 
