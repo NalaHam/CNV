@@ -4,7 +4,9 @@ library(dplyr)
 #BLCA (has normal 1-4 cancer levels)
 clin <- GDCquery_clinic("TCGA-BLCA", type = "clinical", save.csv = TRUE)
 sub_clin <- subset(clin, select = c("submitter_id", "ajcc_pathologic_stage", 
-                                    "gender", "age_at_index"))
+                                    "gender", "age_at_index", "race", "ethnicity", 
+                                    "cigarettes_per_day", "years_smoked","alcohol_history", 
+                                    "alcohol_intensity"))
 
 #Somatic Mutations:
 query1 <- GDCquery( project = "TCGA-BLCA", 
@@ -15,21 +17,17 @@ GDCdownload(query1)
 
 muts <- GDCprepare(query1)
 
-mut_results <- getResults(query1)
+mut_results <- getResults(query1) #can skip
 
-muts_sub <- muts[muts$Variant_Classification != "Silent", ] #remove rows that are silent mutations
-
-muts_sub <- subset(muts_sub, select = c( "Hugo_Symbol", "Chromosome", "Start_Position", 
-                                         "End_Position", "Variant_Classification",
-                                         "Variant_Type", "Tumor_Sample_Barcode", "Matched_Norm_Sample_Barcode",
-                                         "Mutation_Status", "HGVSp"))
+muts <- subset(muts, select = c( "Hugo_Symbol", "Chromosome", "Start_Position", 
+                                 "End_Position", "Variant_Classification",
+                                 "Variant_Type", "Tumor_Sample_Barcode", "Matched_Norm_Sample_Barcode",
+                                 "Mutation_Status", "HGVSp"))
 
 
-submitter_id <- substr(muts_sub$Tumor_Sample_Barcode, 1, 12)
+muts$submitter_id <- substr(muts$Tumor_Sample_Barcode, 1, 12)
 
-muts_sub$submitter_id <- submitter_id
-
-mut_data <- merge(muts_sub, sub_clin, by = "submitter_id", all = T)
+mut_data <- merge(muts, sub_clin, by = "submitter_id", all = T)
 
 names(mut_data)[1] <- 'sample_id'
 names(mut_data)[2] <- 'GeneSymbol'
