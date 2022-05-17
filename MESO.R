@@ -1,12 +1,12 @@
-#LUSC
-clin <- GDCquery_clinic("TCGA-LUSC", type = "clinical", save.csv = TRUE)
+#MESO
+clin <- GDCquery_clinic("TCGA-MESO", type = "clinical", save.csv = TRUE)
 sub_clin <- subset(clin, select = c("submitter_id", "ajcc_pathologic_stage", 
                                     "gender", "age_at_index", "race", "ethnicity", 
                                     "cigarettes_per_day", "years_smoked","alcohol_history", 
                                     "alcohol_intensity"))
 
 #Somatic Mutations:
-query1 <- GDCquery( project = "TCGA-LUSC", 
+query1 <- GDCquery( project = "TCGA-MESO", 
                     data.category = "Simple Nucleotide Variation", 
                     data.type = "Masked Somatic Mutation", legacy=F)
 
@@ -28,4 +28,4 @@ names(mut_data)[1] <- 'sample_id'
 names(mut_data)[2] <- 'GeneSymbol'
 names(mut_data)[12] <- 'cancer_level'
 
-write.csv(mut_data,"LUSC_Mut.csv")
+write.csv(mut_data,"MESO_Mut.csv")
